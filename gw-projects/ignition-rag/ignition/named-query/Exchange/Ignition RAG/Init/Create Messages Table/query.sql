@@ -1,0 +1,8 @@
+CREATE TABLE messages (
+    id TEXT PRIMARY KEY,
+	chat_id TEXT,
+	role TEXT,
+	message TEXT,
+	FOREIGN KEY (chat_id) REFERENCES chats(id) ON DELETE CASCADE,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

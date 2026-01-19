@@ -1,0 +1,40 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "ignition-rag",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "6d08aab7e2ca11137e52eee767aaadcbc71671237afe880ad29dc6a0450f3dbf",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2026-01-19T05:19:12Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "userId",
+        "sqlType": 7
+      }
+    ]
+  }
+}

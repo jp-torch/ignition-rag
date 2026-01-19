@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "ignition-rag",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "d306a60b6fe59aca6ca5fc7872cd1a4b3fe4791826c87547cf5dc5cc80044b6f",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2026-01-18T05:21:32Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "chatId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "chatTitle",
+        "sqlType": 7
+      }
+    ]
+  }
+}

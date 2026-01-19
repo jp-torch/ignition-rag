@@ -1,0 +1,36 @@
+{
+  "connectURL": "jdbc:postgresql://postgres:5432/ragdb",
+  "connectionProps": "",
+  "connectionResetParams": "",
+  "defaultTransactionLevel": "DEFAULT",
+  "driver": "PostgreSQL",
+  "evictionRate": -1,
+  "evictionTests": 3,
+  "evictionTime": 1800000,
+  "failoverMode": "STANDARD",
+  "failoverProfile": "",
+  "includeSchemaInTableName": false,
+  "password": {
+    "data": {
+      "ciphertext": "d3LWylR498SVZg",
+      "encrypted_key": "b6RwPItQQcHG0nvQoLtYJS1WO6WGih_R-c9c9dmgmOosjBgm9Ali6w",
+      "iv": "2lEg1F8vBJtv5KI2",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzY4NjI1ODQ0LCJ6aXAiOiJERUYifQ",
+      "tag": "CUWuwoLeTJRdEXdObR1XAA"
+    },
+    "type": "Embedded"
+  },
+  "poolInitSize": 0,
+  "poolMaxActive": 8,
+  "poolMaxIdle": 8,
+  "poolMaxWait": 5000,
+  "poolMinIdle": 0,
+  "slowQueryLogThreshold": 60000,
+  "testOnBorrow": true,
+  "testOnReturn": false,
+  "testWhileIdle": false,
+  "translator": "POSTGRES",
+  "username": "postgres",
+  "validationQuery": "SELECT 1",
+  "validationSleepTime": 10000
+}

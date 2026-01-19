@@ -1,0 +1,178 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Home\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer",
+            "marginBottom": "20px",
+            "padding": 10
+          },
+          "text": "Ignition RAG",
+          "textStyle": {
+            "fontSize": 16,
+            "fontWeight": "bold"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Main Documents View\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Documents Button"
+        },
+        "position": {
+          "basis": "34px"
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/file_copy"
+            }
+          },
+          "justify": "start",
+          "style": {
+            "classes": "ignition-rag/side-menu-button"
+          },
+          "text": "Documents"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Main Chat View\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)\n\tsystem.perspective.sendMessage(\"ignition-rag-update-chat\", {\"chatId\": None})\n\tsystem.perspective.sendMessage(\"ignition-rag-clear-question\", {})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "New Chat Button"
+        },
+        "position": {
+          "basis": "34px"
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/edit"
+            }
+          },
+          "justify": "start",
+          "style": {
+            "classes": "ignition-rag/side-menu-button",
+            "marginBottom": "10px"
+          },
+          "text": "New Chat"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "props": {
+          "style": {
+            "marginTop": "20px",
+            "padding": 10
+          },
+          "text": "Your Chats",
+          "textStyle": {
+            "fontSize": 14
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Chat Repeater"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "userId": "if(isNull({session.props.auth.user.id}), \"\", {session.props.auth.user.id})"
+                },
+                "queryPath": "Exchange/Ignition RAG/Get Chats"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value:\n\t\treturn [{\"chatTitle\": row[\"chat_title\"], \"id\": row[\"id\"]} for row in value]\n\treturn []",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "path": "Exchange/Ignition RAG/Embedded/Chat Button",
+          "useDefaultViewWidth": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "ignition-rag-refresh-chat-repeater",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.instances\")",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

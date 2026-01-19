@@ -1,0 +1,168 @@
+{
+  "custom": {
+    "chatId": 1
+  },
+  "params": {},
+  "propConfig": {
+    "custom.chatId": {
+      "binding": {
+        "config": {
+          "expression": "null"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Chat History"
+        },
+        "position": {
+          "basis": "320px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "chatId": "{view.custom.chatId}"
+                },
+                "queryPath": "Exchange/Ignition RAG/Get Messages"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value:\n\t\treturn [{\"message\": row[\"message\"], \"role\": row[\"role\"]} for row in value]\n\treturn []",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "path": "Exchange/Ignition RAG/Embedded/Chat Message",
+          "style": {
+            "gap": "20px"
+          },
+          "useDefaultViewWidth": false
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "props": {
+          "text": "Ask anything about your documents",
+          "textStyle": {
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onKeyDown": {
+              "config": {
+                "script": "\tquestion \u003d self.props.text\n\tif len(question) \u003e 0 and event.key \u003d\u003d \"Enter\":\n\t\tself.getSibling(\"Thinking Label\").position.display \u003d True\n\t\t\n\t\tchatId \u003d exchange.ignitionRAG.utils.getId()\n\t\tchatTitle \u003d exchange.ignitionRAG.chat.generateChatTitle(question)\n\t\tuserId \u003d self.session.props.auth.user.id if self.session.props.auth.user.id else \"\"\n\t\t\n\t\tparams \u003d {\n\t\t\t\"chatId\": chatId,\n\t\t\t\"chatTitle\": chatTitle,\n\t\t\t\"userId\": userId\n\t\t}\n\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Chat\", params)\n\t\tsystem.perspective.sendMessage(\"ignition-rag-refresh-chat-repeater\", {})\n\t\tself.props.text \u003d \"\"\n\t\t\n\t\tself.getSibling(\"Thinking Label\").position.display \u003d False"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Question Input"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "\"\""
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "rejectUpdatesWhileFocused": false,
+          "style": {
+            "classes": "ignition-rag/text-input"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "ignition-rag-clear-question",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.props.text \u003d \"\"",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Thinking Label"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "false"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "text": "Thinking......",
+          "textStyle": {
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "ignition-rag-update-chat",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tchatId \u003d payload.get(\"chatId\")\n\tself.view.custom.chatId \u003d chatId",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

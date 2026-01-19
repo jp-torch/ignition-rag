@@ -1,0 +1,65 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "ignition-rag",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "53eb54a5a9513fa35c7936396dba7e358816bda8675001ae9b221c4c35dccbf1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2026-01-19T03:45:51Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "id",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "page",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "chunk",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "text",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "embedding",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "documentId",
+        "sqlType": 7
+      }
+    ]
+  }
+}

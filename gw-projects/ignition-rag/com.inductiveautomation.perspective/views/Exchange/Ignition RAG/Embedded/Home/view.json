@@ -1,0 +1,36 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px",
+          "grow": 1
+        },
+        "props": {
+          "style": {
+            "classes": "ignition-rag/root-container"
+          },
+          "text": "Welcome to Ignition RAG! Start by clicking the Documents button to upload documents, and then create a New Chat to begin asking questions of your documents! The first question or document upload may be slow, since the models will need to be pulled.",
+          "textStyle": {
+            "fontSize": 40,
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "custom": {},
+  "params": {
+    "value": null
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 62,
+      "width": 125
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Delete Document\", {\"documentId\": self.view.params.value})\n\tsystem.perspective.sendMessage(\"ignition-rag-update-docs\", {})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Delete",
+          "tooltip": {
+            "enabled": true,
+            "text": "Delete"
+          }
+        },
+        "position": {
+          "basis": "34px",
+          "grow": 1
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/delete"
+            }
+          },
+          "text": ""
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tdata \u003d system.db.execQuery(\"Exchange/Ignition RAG/Get Document\", {\"documentId\": self.view.params.value})\n\tfileBytes \u003d data[0][\"file_bytes\"]\n\tfileName \u003d data[0][\"source\"]\n\tsystem.perspective.download(fileName, fileBytes)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Download",
+          "tooltip": {
+            "enabled": true,
+            "text": "Download"
+          }
+        },
+        "position": {
+          "basis": "34px",
+          "grow": 1
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/cloud_download"
+            }
+          },
+          "text": ""
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "gap": "15px",
+        "marginBottom": 5,
+        "paddingTop": 5
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

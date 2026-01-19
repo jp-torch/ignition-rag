@@ -1,0 +1,23 @@
+[
+  {
+    "valueSource": "memory",
+    "dataType": "String",
+    "name": "OllamaServer",
+    "defaultValue": "http://localhost:11434",
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "memory",
+    "dataType": "String",
+    "name": "EmbeddingModel",
+    "defaultValue": "nomic-embed-text",
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "memory",
+    "dataType": "String",
+    "name": "AnswerModel",
+    "defaultValue": "nomic-embed-text",
+    "tagType": "AtomicTag"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "Exchange/Ignition RAG/Main"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "show",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": true,
+        "show": "visible",
+        "size": 250,
+        "viewParams": {},
+        "viewPath": "Exchange/Ignition RAG/Side Menu"
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "custom": {},
+  "params": {
+    "chatId": 1,
+    "popupId": "value"
+  },
+  "propConfig": {
+    "params.chatId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.popupId": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 114,
+      "width": 164
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.openPopup(\n\t\t\"edit-chat-title\", \n\t\t\"Exchange/Ignition RAG/Popups/Edit Chat Title\", \n\t\t{\"chatId\": self.view.params.chatId}\n\t)\n\tsystem.perspective.closePopup(self.view.params.popupId)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Edit Button"
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/edit"
+            }
+          },
+          "justify": "start",
+          "style": {
+            "classes": "ignition-rag/side-menu-button"
+          },
+          "text": "Rename"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tchatId \u003d self.view.params.chatId\n\tpopupId \u003d self.view.params.popupId\n\t\n\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Delete Chat\", {\"chatId\": chatId})\n\tsystem.perspective.sendMessage(\"ignition-rag-refresh-chat-repeater\", {})\n\tsystem.perspective.closePopup(popupId)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Delete Button"
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/delete"
+            }
+          },
+          "justify": "start",
+          "style": {
+            "classes": "ignition-rag/side-menu-button"
+          },
+          "text": "Delete"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "gap": "10px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

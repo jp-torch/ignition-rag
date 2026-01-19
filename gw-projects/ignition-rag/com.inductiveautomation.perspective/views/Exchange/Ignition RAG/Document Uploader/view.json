@@ -1,0 +1,54 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onFileReceived": {
+              "config": {
+                "script": "\tfileName \u003d event.file.name\n\tfileBytes \u003d event.file.getBytes()\n\t\n\tself.getSibling(\"TextField\").props.text \u003d exchange.ignitionRAG.rag.loadData(fileName, fileBytes)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FileUpload"
+        },
+        "position": {
+          "basis": "145px"
+        },
+        "props": {
+          "supportedFileTypes": [
+            "pdf",
+            "txt"
+          ]
+        },
+        "type": "ia.input.fileupload"
+      },
+      {
+        "meta": {
+          "name": "TextField"
+        },
+        "position": {
+          "basis": "450px"
+        },
+        "props": {
+          "text": null
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}
