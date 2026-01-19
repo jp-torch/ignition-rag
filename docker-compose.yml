@@ -11,6 +11,7 @@ services:
     volumes:
       - ./gw-projects/ignition-rag:/usr/local/bin/ignition/data/projects/ignition-rag
       - ./gw-config/ignition-rag/:/usr/local/bin/ignition/data/config/
+      - ./commissioning.json:/usr/local/bin/ignition/data/commissioning.json
       - ./pdfbox-app-3.0.6.jar:/usr/local/bin/ignition/lib/core/gateway/pdfbox-app-3.0.6.jar
     environment:
       # - GATEWAY_ADMIN_USERNAME=admin
