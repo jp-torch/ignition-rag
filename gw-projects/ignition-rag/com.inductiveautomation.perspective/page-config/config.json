@@ -22,6 +22,22 @@
         "viewParams": {},
         "viewPath": "Exchange/Ignition RAG/Side Menu"
       }
+    ],
+    "top": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 50,
+        "viewParams": {},
+        "viewPath": "Exchange/Ignition RAG/Header"
+      }
     ]
   }
 }

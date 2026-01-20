@@ -1,0 +1,92 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 59
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Home\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "autp",
+          "grow": 1
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer",
+            "padding": 10
+          },
+          "text": "Ignition RAG",
+          "textStyle": {
+            "fontSize": 16,
+            "fontWeight": "bold"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "draggable": false,
+                "id": "user-profile",
+                "modal": false,
+                "overlayDismiss": false,
+                "position": {
+                  "relativeLocation": "bottom"
+                },
+                "positionType": "relative",
+                "resizable": false,
+                "showCloseIcon": true,
+                "type": "toggle",
+                "viewPath": "Exchange/Ignition RAG/Popups/User Profile",
+                "viewportBound": true
+              },
+              "scope": "C",
+              "type": "popup"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "basis": "80px"
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "material/account_circle"
+            }
+          },
+          "style": {
+            "classes": "ignition-rag/side-menu-button"
+          },
+          "text": ""
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

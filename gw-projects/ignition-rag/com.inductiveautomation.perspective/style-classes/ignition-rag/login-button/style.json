@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FFFFFF00",
+      "color": "var(--success)",
+      "textAlign": "left"
+    }
+  }
+}

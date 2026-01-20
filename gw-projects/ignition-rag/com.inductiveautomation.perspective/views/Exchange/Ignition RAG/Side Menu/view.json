@@ -17,42 +17,10 @@
     "children": [
       {
         "events": {
-          "dom": {
-            "onClick": {
-              "config": {
-                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Home\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)"
-              },
-              "scope": "G",
-              "type": "script"
-            }
-          }
-        },
-        "meta": {
-          "name": "Title"
-        },
-        "position": {
-          "basis": "32px"
-        },
-        "props": {
-          "style": {
-            "cursor": "pointer",
-            "marginBottom": "20px",
-            "padding": 10
-          },
-          "text": "Ignition RAG",
-          "textStyle": {
-            "fontSize": 16,
-            "fontWeight": "bold"
-          }
-        },
-        "type": "ia.display.label"
-      },
-      {
-        "events": {
           "component": {
             "onActionPerformed": {
               "config": {
-                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Main Documents View\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)"
+                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Main Documents View\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)\n\tself.view.custom.selectedChatId \u003d None"
               },
               "scope": "G",
               "type": "script"
