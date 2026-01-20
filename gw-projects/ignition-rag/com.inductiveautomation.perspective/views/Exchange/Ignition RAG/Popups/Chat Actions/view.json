@@ -56,7 +56,7 @@
           "component": {
             "onActionPerformed": {
               "config": {
-                "script": "\tchatId \u003d self.view.params.chatId\n\tpopupId \u003d self.view.params.popupId\n\t\n\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Delete Chat\", {\"chatId\": chatId})\n\tsystem.perspective.sendMessage(\"ignition-rag-refresh-chat-repeater\", {})\n\tsystem.perspective.closePopup(popupId)"
+                "script": "\tchatId \u003d self.view.params.chatId\n\tpopupId \u003d self.view.params.popupId\n\t\n\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Delete Chat\", {\"chatId\": chatId})\n\tsystem.perspective.sendMessage(\"ignition-rag-update-chat\", {\"chatId\": None})\n\tsystem.perspective.sendMessage(\"ignition-rag-refresh-chat-repeater\", {})\n\tsystem.perspective.closePopup(popupId)"
               },
               "scope": "G",
               "type": "script"

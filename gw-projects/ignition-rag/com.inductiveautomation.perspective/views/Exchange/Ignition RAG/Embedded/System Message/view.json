@@ -22,7 +22,7 @@
           "name": "Markdown"
         },
         "position": {
-          "basis": "200px"
+          "grow": 1
         },
         "propConfig": {
           "props.source": {

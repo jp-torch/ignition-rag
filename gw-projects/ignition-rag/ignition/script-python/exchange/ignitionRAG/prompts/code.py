@@ -5,7 +5,6 @@ RAG_ANSWER_STRICT_PROMPT = """
 	- Answer ONLY using the CONTEXT.
 	- If insufficient information exists, say:
 	  "I don’t know based on the provided information."
-	- Cite the relevant source(s) using [source, page].
 	- Format your answer with Markdown
 	
 	CONTEXT:
@@ -14,7 +13,7 @@ RAG_ANSWER_STRICT_PROMPT = """
 	QUESTION:
 	{question}
 	
-	ANSWER (include citations):
+	ANSWER:
 """
 
 QUESTION_TITLE_PROMPT = """

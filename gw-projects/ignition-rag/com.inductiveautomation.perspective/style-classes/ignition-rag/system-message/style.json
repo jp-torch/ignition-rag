@@ -8,7 +8,10 @@
       "borderTopRightRadius": "10px",
       "borderBottomLeftRadius": "10px",
       "borderBottomRightRadius": "10px",
+      "paddingBottom": "5px",
+      "paddingLeft": "10px",
       "paddingRight": "10px",
+      "paddingTop": "5px",
       "textAlign": "left"
     }
   }

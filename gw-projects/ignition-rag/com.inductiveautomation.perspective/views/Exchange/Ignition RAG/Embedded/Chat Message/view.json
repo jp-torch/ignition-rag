@@ -24,7 +24,7 @@
     "children": [
       {
         "meta": {
-          "name": "Left Soacer"
+          "name": "Spacer Left"
         },
         "position": {
           "basis": "50%",
@@ -72,7 +72,7 @@
       },
       {
         "meta": {
-          "name": "Right Spacer"
+          "name": "Spacer Right"
         },
         "position": {
           "basis": "50%",

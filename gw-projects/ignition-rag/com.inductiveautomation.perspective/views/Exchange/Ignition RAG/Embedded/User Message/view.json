@@ -1,7 +1,7 @@
 {
   "custom": {},
   "params": {
-    "message": "value"
+    "message": ""
   },
   "propConfig": {
     "params.message": {
@@ -19,14 +19,13 @@
     "children": [
       {
         "meta": {
-          "name": "Label"
+          "name": "Markdown"
         },
         "position": {
-          "basis": "32px",
           "grow": 1
         },
         "propConfig": {
-          "props.text": {
+          "props.source": {
             "binding": {
               "config": {
                 "path": "view.params.message"
@@ -40,7 +39,7 @@
             "classes": "ignition-rag/user-message"
           }
         },
-        "type": "ia.display.label"
+        "type": "ia.display.markdown"
       }
     ],
     "meta": {
