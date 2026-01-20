@@ -54,7 +54,9 @@ Notes:
 - **Ignition resources**: changes typically live under `gw-projects/` (project assets) and `gw-config/` (gateway config)
 - **PRs**: include a short description + how you validated the change (screenshots welcome for Perspective)
 
-## Future updates / ideas
+## Contribution ideas
+
+Looking to contribute? Here are some ideas for features you could integrate:
 
 - **OpenAI integration** (in addition to local models), with per-environment configuration
 - **Support for more document types** (Word, Excel, etc.)
