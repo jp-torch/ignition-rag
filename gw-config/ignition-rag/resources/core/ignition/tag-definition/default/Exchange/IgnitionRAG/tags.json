@@ -17,7 +17,7 @@
     "valueSource": "memory",
     "dataType": "String",
     "name": "AnswerModel",
-    "defaultValue": "nomic-embed-text",
+    "defaultValue": "llama3.1",
     "tagType": "AtomicTag"
   }
 ]
