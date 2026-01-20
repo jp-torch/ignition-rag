@@ -35,6 +35,7 @@ docker compose down -v
 Notes:
 - `sql-init/` contains the database initialization scripts.
 - `gw-projects/` contains the Ignition project resources (Perspective, scripts, named queries, etc.).
+- **Docker Memory**: You may need to increase Docker's memory allocation (Docker Desktop → Settings → Resources) if you encounter out-of-memory errors, especially when using larger Ollama models.
 
 ## Access & Configuration
 
