@@ -13,7 +13,7 @@
           "dom": {
             "onClick": {
               "config": {
-                "script": "\tpayload \u003d {\"view\": \"Exchange/Ignition RAG/Embedded/Home\"}\n\tsystem.perspective.sendMessage(\"ignition-rag-change-view\", payload)"
+                "script": "\tsystem.perspective.navigate(\"/\")"
               },
               "scope": "G",
               "type": "script"

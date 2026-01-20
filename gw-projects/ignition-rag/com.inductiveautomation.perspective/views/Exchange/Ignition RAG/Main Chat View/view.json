@@ -1,16 +1,22 @@
 {
   "custom": {
-    "chatId": "1a00c7a1-7131-4aca-91b7-c72791509084"
+    "chatId": "value"
   },
-  "params": {},
+  "params": {
+    "chatId": "value"
+  },
   "propConfig": {
     "custom.chatId": {
       "binding": {
         "config": {
-          "expression": "null"
+          "expression": "if({view.params.chatId} \u003d \"new\", null, {view.params.chatId})"
         },
         "type": "expr"
       },
+      "persistent": true
+    },
+    "params.chatId": {
+      "paramDirection": "input",
       "persistent": true
     }
   },
@@ -29,18 +35,15 @@
           "props.instances": {
             "binding": {
               "config": {
-                "parameters": {
-                  "chatId": "{view.custom.chatId}"
-                },
-                "queryPath": "Exchange/Ignition RAG/Get Messages"
+                "expression": "{view.custom.chatId}"
               },
               "transforms": [
                 {
-                  "code": "\tif value:\n\t\treturn [{\"message\": row[\"message\"], \"role\": row[\"role\"]} for row in value]\n\treturn []",
+                  "code": "\tif value is not None:\n\t\tdata \u003d system.db.execQuery(\"Exchange/Ignition RAG/Get Messages\", {\"chatId\": value})\n\t\treturn [{\"message\": row[\"message\"], \"role\": row[\"role\"]} for row in data]\n\treturn []",
                   "type": "script"
                 }
               ],
-              "type": "query"
+              "type": "expr"
             }
           }
         },
@@ -84,7 +87,7 @@
           "dom": {
             "onKeyDown": {
               "config": {
-                "script": "\tquestion \u003d self.props.text\n\tchatId \u003d self.view.custom.chatId\n\t\n\tif len(question) \u003e 0 and event.key \u003d\u003d \"Enter\":\n\t\tself.getSibling(\"Thinking Label\").position.display \u003d True\n\t\t\n\t\t# Start a new chat\n\t\tif chatId is None:\n\t\t\tchatId \u003d exchange.ignitionRAG.utils.getId()\n\t\t\tself.view.custom.chatId \u003d chatId\n\t\t\tchatTitle \u003d exchange.ignitionRAG.chat.generateChatTitle(question)\n\t\t\tuserId \u003d self.session.props.auth.user.id if self.session.props.auth.user.id else \"\"\n\t\t\t\n\t\t\tparams \u003d {\n\t\t\t\t\"chatId\": chatId,\n\t\t\t\t\"chatTitle\": chatTitle,\n\t\t\t\t\"userId\": userId\n\t\t\t}\n\t\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Chat\", params)\n\t\t\tsystem.perspective.sendMessage(\"ignition-rag-refresh-chat-repeater\", {})\n\t\t\n\t\t# Insert the user message\n\t\tmessageId \u003d exchange.ignitionRAG.utils.getId()\n\t\tparams \u003d {\n\t\t\t\"messageId\": messageId,\n\t\t\t\"chatId\": chatId,\n\t\t\t\"message\": question,\n\t\t\t\"role\": \"user\"\n\t\t}\n\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Message\", params)\n\t\tself.getSibling(\"Chat History\").refreshBinding(\"props.instances\")\n\t\tself.props.text \u003d \"\"\n\t\t\n\t\t# Get the answer\n\t\tanswer \u003d exchange.ignitionRAG.rag.generateAnswer(question)\n\t\t\n\t\t# Insert the ansewr in the DB\n\t\tmessageId \u003d exchange.ignitionRAG.utils.getId()\n\t\tparams \u003d {\n\t\t\t\"messageId\": messageId,\n\t\t\t\"chatId\": chatId,\n\t\t\t\"message\": answer,\n\t\t\t\"role\": \"system\"\n\t\t}\n\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Message\", params)\n\t\tself.getSibling(\"Chat History\").refreshBinding(\"props.instances\")\n\t\t\n\t\tself.getSibling(\"Thinking Label\").position.display \u003d False"
+                "script": "\tquestion \u003d self.props.text\n\tchatId \u003d self.view.custom.chatId\n\t\n\tif len(question) \u003e 0 and event.key \u003d\u003d \"Enter\":\n\t\ttry:\n\t\t\tself.getSibling(\"Thinking Label\").position.display \u003d True\n\t\t\t\n\t\t\t# Start a new chat\n\t\t\tif chatId is None:\n\t\t\t\tchatId \u003d exchange.ignitionRAG.utils.getId()\n\t\t\t\tself.view.custom.chatId \u003d chatId\n\t\t\t\tchatTitle \u003d exchange.ignitionRAG.chat.generateChatTitle(question)\n\t\t\t\tuserId \u003d self.session.props.auth.user.id if self.session.props.auth.user.id else \"\"\n\t\t\t\t\n\t\t\t\tparams \u003d {\n\t\t\t\t\t\"chatId\": chatId,\n\t\t\t\t\t\"chatTitle\": chatTitle,\n\t\t\t\t\t\"userId\": userId\n\t\t\t\t}\n\t\t\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Chat\", params)\n\t\t\t\tsystem.perspective.sendMessage(\"ignition-rag-refresh-chat-repeater\", {})\n\t\t\t\tsystem.perspective.sendMessage(\"ignition-rag-select-chat\", {\"chatId\": chatId})\n\t\t\t\tsystem.perspective.navigate(\"/chat/%s\" % chatId)\n\t\t\t\n\t\t\t# Insert the user message\n\t\t\tmessageId \u003d exchange.ignitionRAG.utils.getId()\n\t\t\tparams \u003d {\n\t\t\t\t\"messageId\": messageId,\n\t\t\t\t\"chatId\": chatId,\n\t\t\t\t\"message\": question,\n\t\t\t\t\"role\": \"user\"\n\t\t\t}\n\t\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Message\", params)\n\t\t\tself.getSibling(\"Chat History\").refreshBinding(\"props.instances\")\n\t\t\tself.props.text \u003d \"\"\n\t\t\t\n\t\t\t# Get the answer\n\t\t\tanswer \u003d exchange.ignitionRAG.rag.generateAnswer(question)\n\t\t\t\n\t\t\t# Insert the ansewr in the DB\n\t\t\tmessageId \u003d exchange.ignitionRAG.utils.getId()\n\t\t\tparams \u003d {\n\t\t\t\t\"messageId\": messageId,\n\t\t\t\t\"chatId\": chatId,\n\t\t\t\t\"message\": answer,\n\t\t\t\t\"role\": \"system\"\n\t\t\t}\n\t\t\tsystem.db.execUpdate(\"Exchange/Ignition RAG/Insert Message\", params)\n\t\t\tself.getSibling(\"Chat History\").refreshBinding(\"props.instances\")\n\t\t\t\n\t\t\tself.getSibling(\"Thinking Label\").position.display \u003d False\n\t\texcept Exception as e:\n\t\t\tsystem.perspective.openPopup(\"ignition-rag-message\", \"Exchange/Ignition RAG/Popups/Message\", {\"message\": \"Error: %s\" % str(e)})\n\t\t\tself.props.text \u003d \"\""
               },
               "scope": "G",
               "type": "script"
@@ -120,19 +123,6 @@
           "style": {
             "classes": "ignition-rag/text-input"
           }
-        },
-        "scripts": {
-          "customMethods": [],
-          "extensionFunctions": null,
-          "messageHandlers": [
-            {
-              "messageType": "ignition-rag-clear-question",
-              "pageScope": true,
-              "script": "\t# implement your handler here\n\tself.props.text \u003d \"\"",
-              "sessionScope": false,
-              "viewScope": false
-            }
-          ]
         },
         "type": "ia.input.text-field"
       },
@@ -170,19 +160,6 @@
     },
     "props": {
       "direction": "column"
-    },
-    "scripts": {
-      "customMethods": [],
-      "extensionFunctions": null,
-      "messageHandlers": [
-        {
-          "messageType": "ignition-rag-update-chat",
-          "pageScope": true,
-          "script": "\t# implement your handler here\n\tchatId \u003d payload.get(\"chatId\")\n\tself.view.custom.chatId \u003d chatId",
-          "sessionScope": false,
-          "viewScope": false
-        }
-      ]
     },
     "type": "ia.container.flex"
   }

@@ -8,6 +8,7 @@
       "borderTopRightRadius": "10px",
       "borderBottomLeftRadius": "10px",
       "borderBottomRightRadius": "10px",
+      "fontWeight": "normal",
       "paddingBottom": "10px",
       "paddingLeft": "10px",
       "paddingRight": "10px",

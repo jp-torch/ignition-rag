@@ -2,7 +2,15 @@
   "pages": {
     "/": {
       "title": "",
-      "viewPath": "Exchange/Ignition RAG/Main"
+      "viewPath": "Exchange/Ignition RAG/Home"
+    },
+    "/chat/:chatId": {
+      "title": "",
+      "viewPath": "Exchange/Ignition RAG/Main Chat View"
+    },
+    "/documents": {
+      "title": "",
+      "viewPath": "Exchange/Ignition RAG/Main Documents View"
     }
   },
   "sharedDocks": {
