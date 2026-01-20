@@ -36,6 +36,16 @@ Notes:
 - `sql-init/` contains the database initialization scripts.
 - `gw-projects/` contains the Ignition project resources (Perspective, scripts, named queries, etc.).
 
+## Access & Configuration
+
+- **Gateway**: Once running, access the Ignition Gateway at `http://localhost:8088`
+- **Ollama Models**: Configure which models to use via tags in the Ignition Gateway:
+  - `Exchange/IgnitionRAG/OllamaServer` - Ollama server URL (default: `http://ollama:11434`)
+  - `Exchange/IgnitionRAG/EmbeddingModel` - Model for generating embeddings (default: `nomic-embed-text`)
+  - `Exchange/IgnitionRAG/AnswerModel` - Model for generating answers (default: `nomic-embed-text`)
+
+  Change these tags in the Gateway to use different Ollama models (e.g., `llama3`, `mistral`, etc.).
+
 ## Contributing
 
 - **Branch**: create a feature branch off `main`
