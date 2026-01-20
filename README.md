@@ -2,6 +2,8 @@
 
 A simple Retrieval-Augmented Generation (RAG) project built on Ignition by Inductive Automation.
 
+Built by [Torch Automation](https://www.torch-automation.com/).
+
 ## What is RAG?
 
 RAG (Retrieval-Augmented Generation) is a pattern that helps an LLM answer questions using **your documents**:
