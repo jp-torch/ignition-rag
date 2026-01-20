@@ -3,7 +3,7 @@
     "valueSource": "memory",
     "dataType": "String",
     "name": "OllamaServer",
-    "defaultValue": "http://localhost:11434",
+    "defaultValue": "http://ollama:11434",
     "tagType": "AtomicTag"
   },
   {
